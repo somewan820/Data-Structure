@@ -114,8 +114,8 @@ bool IsBinarySearchTree(BstNode* root) {
 //Delete a node from BST
 BstNode* Delete(BstNode* root, int data) {
     if (root == NULL) return NULL;
-    else if(data < root->data) root->left = Delete(root->left, data);
-    else if(data > root->data) root->right = Delete(root->right, data);
+    else if (data < root->data) root->left = Delete(root->left, data);
+    else if (data > root->data) root->right = Delete(root->right, data);
     else {
         //case 1: No child
         if (root->left == NULL && root->right == NULL) {
