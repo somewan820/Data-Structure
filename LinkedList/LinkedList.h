@@ -10,15 +10,17 @@ struct Node {
 Node *head = nullptr;
 
 //在链表任意处插入一个节点
-void Any_Insert(int data, int n) {
+void Insert(int data, int n) {
     Node *temp1 = new Node;
     temp1->data = data;
     temp1->next = nullptr;
+
     if (n == 1) {
         temp1->next = head;
         head = temp1;
         return;
     }
+
     Node *temp2 = head;
     for (int i = 0; i < n - 2; i++) {
         temp2 = temp2->next;
@@ -30,11 +32,13 @@ void Any_Insert(int data, int n) {
 //在链表任意处删除一个节点
 void Delect(int n) {
     Node *temp1 = head;
+
     if (n == 1) {
         head = temp1->next;
         delete temp1;
         return;
     }
+
     for (int i = 0; i < n - 2; i++) {
         temp1 = temp1->next;
     }
@@ -75,18 +79,26 @@ void Print(Node *head) {
     Node *temp = head;
     std::cout << "List is:";
     while (temp != nullptr) {
-        std::cout << temp->data << " ";
+        if (temp->next == nullptr) {
+            std::cout << temp->data;
+        } else {
+            std::cout << temp->data << " -> ";
+        }
         temp = temp->next;
     }
     std::cout << std::endl;
 }
 
 //以递归的方式反向打印链表
-void Recursive_Print(Node *head) {
+void RecursivePrint(Node *head) {
     if (head == nullptr) {
-        std::cout << std::endl;
         return;
     }
-    std::cout << head->data << " ";
-    Recursive_Print(head->next);
+    RecursivePrint(head->next);
+    if (head->next == nullptr) {
+        std::cout << "Recursive List is:";
+        std::cout << head->data;
+    } else {
+        std::cout << " <- " << head->data;
+    }
 }
